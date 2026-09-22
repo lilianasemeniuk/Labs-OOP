@@ -7,11 +7,40 @@
         mc:Ignorable="d"
         Title="Робота 2" Height="450" Width="800">
 
-    <StackPanel Margin="20 VerticalAlignment=Center">
+    <StackPanel Margin="20" VerticalAlignment="Center">
         <TextBlock Text="Крок 1: Введіть ваше ім'я"
                    FontSize="30"
+                   FontWeight="Bold"
                    HorizontalAlignment="Center"
                    Margin="0, 0, 0, 20" />
 
+        <TextBlock x:Name="TxtInput"
+                   Height="30"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   Margin="0, 0, 0, 20" />
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="BtnNext"
+                    Content="Далі >>"
+                    Click="BtnNextClick"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Width="200"
+                    Height="40"
+                    Background="#d2d4d6"
+                    Margin="5" />
+            <Button x:Name="BtnCancel"
+                    Content="Скасувати"
+                    Click="BtnCancelClick"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Width="200"
+                    Height="40"
+                    Background="#d2d4d6"
+                    Margin="5" />
+
+        </StackPanel>
     </StackPanel>
 </local:BaseDialogWindow>
