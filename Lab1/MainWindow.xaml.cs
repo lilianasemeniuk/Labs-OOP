@@ -20,5 +20,18 @@ namespace Lab1
         {
             InitializeComponent();
         }
+
+        private void MenuItemWork1_Click(object sender, RoutedEventArgs e)
+        {
+            SliderDialog dialog = new SliderDialog();
+            dialog.Owner = this;
+            dialog.ShowDialog();
+            TxtResult.Text = dialog.GetDialogResult();
+        }
+
+        private void MenuItemWork2_Click(object sender, RoutedEventArgs e)
+        {
+            TxtResult.Text = "Обрано: Робота 2.";
+        }
     }
 }
