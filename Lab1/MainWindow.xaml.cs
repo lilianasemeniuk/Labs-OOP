@@ -31,7 +31,13 @@ namespace Lab1
 
         private void MenuItemWork2_Click(object sender, RoutedEventArgs e)
         {
-            TxtResult.Text = "Обрано: Робота 2.";
+            Step1Dialog step1 = new Step1Dialog();
+            step1.Owner = this;
+
+            if (step1.ShowDialog() == true)
+            {
+                TxtResult.Text = step1.GetDialogResult();
+            }
         }
     }
 }

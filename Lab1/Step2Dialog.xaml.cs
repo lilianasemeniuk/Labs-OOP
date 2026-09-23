@@ -24,14 +24,28 @@ namespace Lab1
 
         private void BtnBackClick(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
+            this.Close();
         }
 
         private void BtnYesClick(object sender, RoutedEventArgs e)
         {
+            DataManager.LastResult = "Обрано: \"Так\" ";
+
+            this.DialogResult = true;
+            this.Close();
         }
 
         private void BtnCancelClick(object sender, RoutedEventArgs e)
         {
+            DataManager.LastResult = "Обрано: \"Відхилити\" ";
+            this.DialogResult = null;
+            this.Close();
+        }
+
+        public override string GetDialogResult()
+        {
+            return DataManager.LastResult;
         }
     }
 }
