@@ -27,14 +27,14 @@ namespace Lab1
             this.Hide();
 
             Step2Dialog step2 = new Step2Dialog();
-            step2.Owner = this.Owner;
+            step2.Owner = this;
 
             bool? result = step2.ShowDialog();
 
             if (result == true)
             {
-                this.DialogResult = true;
-                this.Close();
+                this.Show();
+                this.Visibility = Visibility.Hidden;
             }
             else if (result == false)
             {
