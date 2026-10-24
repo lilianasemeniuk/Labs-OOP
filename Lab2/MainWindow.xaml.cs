@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,8 +20,9 @@ namespace Lab2
         private bool isDrawing = false;
         private System.Windows.Point startPoint;
         private Shape currentShape;
-
         private System.Collections.Generic.List<Shape> shapesList = new System.Collections.Generic.List<Shape>();
+        private string currentMode = "Line";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,11 +36,13 @@ namespace Lab2
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             this.Title = "Line";
+            currentMode = "Line";
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
             this.Title = "Rectangle";
+            currentMode = "Rectangle";
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
@@ -50,7 +54,16 @@ namespace Lab2
         {
             isDrawing = true;
             startPoint = e.GetPosition(MyCanvas);
-            currentShape = new LineShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
+
+            if (currentMode == "Line")
+            {
+                currentShape = new LineShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
+            }
+            else
+            {
+                currentShape = new RectangleShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
+            }
+
             currentShape.Draw(MyCanvas);
 
             MyCanvas.CaptureMouse();
