@@ -105,5 +105,32 @@ namespace Lab2
 
 
         }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            MyCanvas.Children.Clear();
+            shapesList.Clear();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            string aboutText = ("Лабораторна робота #2 (Варіант 21)\n" +
+                "Виконала: Семенюк Ліліана Валентинівна\n " +
+                "Інтерфейс та функціонал: \n" +
+                "Програма дозволяє користувачу малювати на полотні різні " +
+                "фігури (точки, лінії, прямокутники та еліпси) за допомогою миші." +
+                " Користувач може вибирати тип фігури з меню та малювати її, натискаючи та" +
+                " перетягуючи мишу на полотні. Програма також дозволяє" +
+                " очищати полотно та виходити з програми.");
+
+            System.Windows.MessageBox.Show(aboutText, "Про програму");
+
+
+        }
     }
 }

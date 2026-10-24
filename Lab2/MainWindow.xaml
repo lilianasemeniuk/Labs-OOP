@@ -8,7 +8,10 @@
         Title="Lab2" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File" Background="#d6d0d0"/>
+            <MenuItem Header="File" Background="#d6d0d0">
+                <MenuItem Header="Clear" Click="Clear_Click"/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
 
             <MenuItem Header="Objects" Background="#d6d0d0">
                 <MenuItem Header="Point" Background="#d6d0d0" Click="MenuItem_Click"/>
@@ -17,7 +20,9 @@
                 <MenuItem Header="Ellipse" Background="#d6d0d0" Click="MenuItem_Click_3"/>
             </MenuItem>
 
-            <MenuItem Header="Help" Background="#d6d0d0"/>
+            <MenuItem Header="Help" Background="#d6d0d0" >
+                <MenuItem Header="About" Click="Help_Click"/>
+            </MenuItem>
         </Menu>
 
         <Canvas x:Name="MyCanvas" 
