@@ -48,6 +48,7 @@ namespace Lab2
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
             this.Title = "Ellipse";
+            currentMode = "Ellipse";
         }
 
         private void MyCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -59,9 +60,13 @@ namespace Lab2
             {
                 currentShape = new LineShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
             }
-            else
+            else if (currentMode == "Rectangle")
             {
                 currentShape = new RectangleShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
+            }
+            else
+            {
+                currentShape = new EllipseShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
             }
 
             currentShape.Draw(MyCanvas);
