@@ -31,6 +31,7 @@ namespace Lab2
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             this.Title = "Point";
+            currentMode = "Point";
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -64,9 +65,13 @@ namespace Lab2
             {
                 currentShape = new RectangleShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
             }
-            else
+            else if (currentMode == "Ellipse")
             {
                 currentShape = new EllipseShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
+            }
+            else
+            {
+                currentShape = new PointShape(startPoint.X, startPoint.Y, startPoint.X, startPoint.Y);
             }
 
             currentShape.Draw(MyCanvas);
