@@ -17,13 +17,16 @@ namespace Lab2
 
             myEllipse.Stroke = StrokeColor;
             myEllipse.StrokeThickness = 2;
-            myEllipse.Fill = Brushes.Transparent;
+            myEllipse.Fill = Brushes.White;
 
-            myEllipse.Width = Math.Abs(x2 - x1);
-            myEllipse.Height = Math.Abs(y2 - y1);
+            double rx = Math.Abs(x2 - x1);
+            double ry = Math.Abs(y2 - y1);
 
-            Canvas.SetLeft(myEllipse, Math.Min(x1, x2));
-            Canvas.SetTop(myEllipse, Math.Min(y1, y2));
+            myEllipse.Width = rx * 2;
+            myEllipse.Height = ry * 2;
+
+            Canvas.SetLeft(myEllipse, x1 - rx);
+            Canvas.SetTop(myEllipse, y1 - ry);
 
             canvas.Children.Add(myEllipse);
 

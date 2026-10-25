@@ -19,7 +19,7 @@ namespace Lab2
             myRect.Stroke = StrokeColor;
             myRect.StrokeThickness = 2;
 
-            myRect.Fill = Brushes.Transparent;
+            myRect.Fill = Brushes.Pink;
 
             myRect.Width = Math.Abs(x2 - x1);
             myRect.Height = Math.Abs(y2 - y1);

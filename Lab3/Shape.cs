@@ -31,7 +31,7 @@ namespace Lab2
         {
             get;
             set;
-        } = Brushes.Red;
+        } = Brushes.Blue;
         public abstract void Draw(System.Windows.Controls.Canvas canvas);
     }
 }
