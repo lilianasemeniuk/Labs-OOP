@@ -18,7 +18,8 @@ namespace Lab2
         private bool isDrawing = false;
         private System.Windows.Point startPoint;
         private Shape currentShape;
-        private System.Collections.Generic.List<Shape> shapesList = new System.Collections.Generic.List<Shape>();
+        private Shape[] shapesArray = new Shape[122];
+        private int shapeCount = 0;
         private string currentMode = "Line";
 
         public MainWindow()
@@ -84,9 +85,9 @@ namespace Lab2
             currentShape.Update(currentPoint.X, currentPoint.Y);
             MyCanvas.Children.Clear();
 
-            foreach (Shape savedShape in shapesList)
+            for (int i = 0; i < shapeCount; i++)
             {
-                savedShape.Draw(MyCanvas);
+                shapesArray[i].Draw(MyCanvas);
             }
 
             currentShape.Draw(MyCanvas);
@@ -104,13 +105,18 @@ namespace Lab2
                 currentShape.StrokeColor = Brushes.Black;
                 MyCanvas.Children.Clear();
 
-                foreach (var shape in shapesList)
+                for (int i = 0; i < shapeCount; i++)
                 {
-                    shape.Draw(MyCanvas);
+                    shapesArray[i].Draw(MyCanvas);
                 }
 
                 currentShape.Draw(MyCanvas);
-                shapesList.Add(currentShape);
+                
+                if (shapeCount < 122)
+                {
+                    shapesArray[shapeCount] = currentShape;
+                    shapeCount++;
+                }
 
                 MyCanvas.ReleaseMouseCapture();
             }
@@ -121,7 +127,7 @@ namespace Lab2
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             MyCanvas.Children.Clear();
-            shapesList.Clear();
+            shapeCount = 0;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
