@@ -16,7 +16,7 @@ namespace Lab2
         {
             System.Windows.Shapes.Rectangle myRect = new System.Windows.Shapes.Rectangle();
 
-            myRect.Stroke = Brushes.Red;
+            myRect.Stroke = StrokeColor;
             myRect.StrokeThickness = 2;
 
             myRect.Fill = Brushes.Transparent;

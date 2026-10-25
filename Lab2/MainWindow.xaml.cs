@@ -96,11 +96,25 @@ namespace Lab2
 
         private void MyCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (isDrawing)
+            if (isDrawing && currentShape != null)
             {
                 isDrawing = false;
-                MyCanvas.ReleaseMouseCapture();
+
+                currentShape.x2 = e.GetPosition(MyCanvas).X;
+                currentShape.y2 = e.GetPosition(MyCanvas).Y;
+
+                currentShape.StrokeColor = Brushes.Black;
+                MyCanvas.Children.Clear();
+
+                foreach (var shape in shapesList)
+                {
+                    shape.Draw(MyCanvas);
+                }
+
+                currentShape.Draw(MyCanvas);
                 shapesList.Add(currentShape);
+
+                MyCanvas.ReleaseMouseCapture();
             }
 
 

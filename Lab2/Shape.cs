@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Lab2
 {
     public abstract class Shape
     {
-        protected double x1;
-        protected double y1;
-        protected double x2;
-        protected double y2;
+        public double x1;
+        public double y1;
+        public double x2;
+        public double y2;
 
         public Shape(double x1, double y1, double x2, double y2)
         {
@@ -26,8 +27,11 @@ namespace Lab2
             this.y2 = newY;
         }
 
+        public Brush StrokeColor
+        {
+            get;
+            set;
+        } = Brushes.Red;
         public abstract void Draw(System.Windows.Controls.Canvas canvas);
     }
-
-   
 }

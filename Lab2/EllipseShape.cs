@@ -15,7 +15,7 @@ namespace Lab2
         {
             System.Windows.Shapes.Ellipse myEllipse = new System.Windows.Shapes.Ellipse();
 
-            myEllipse.Stroke = Brushes.Red;
+            myEllipse.Stroke = StrokeColor;
             myEllipse.StrokeThickness = 2;
             myEllipse.Fill = Brushes.Transparent;
 

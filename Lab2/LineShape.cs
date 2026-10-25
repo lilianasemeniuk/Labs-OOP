@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Windows.Controls;
 
@@ -20,7 +21,7 @@ namespace Lab2
             myLine.X2 = x2;
             myLine.Y2 = y2;
 
-            myLine.Stroke = System.Windows.Media.Brushes.Red;
+            myLine.Stroke = StrokeColor;
             myLine.StrokeThickness = 2;
 
             canvas.Children.Add(myLine);

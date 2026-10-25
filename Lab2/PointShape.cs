@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace Lab2
 {
@@ -13,7 +14,7 @@ namespace Lab2
         public override void Draw(Canvas canvas)
         {
             System.Windows.Shapes.Ellipse myPoint = new System.Windows.Shapes.Ellipse();
-            myPoint.Fill = Brushes.Red;
+            myPoint.Fill = StrokeColor;
             myPoint.Width = 5;
             myPoint.Height = 5;
 
