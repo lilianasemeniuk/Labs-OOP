@@ -150,5 +150,27 @@ namespace Lab2
 
 
         }
+
+        private void ObjectMenu_SubmenuOpened(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MenuPoint.IsChecked = false;
+            MenuLine.IsChecked = false;
+            MenuRectangle.IsChecked = false;
+            MenuEllipse.IsChecked = false;
+
+            switch (currentMode)
+            {
+                case "Point": MenuPoint.IsChecked = true;
+                    break;
+
+                case "Line": MenuPoint.IsChecked = true;
+                    break;
+
+                case "Rectangle": MenuRectangle.IsChecked = true;
+                    break;
+                case "Ellipse": MenuEllipse.IsChecked = true;
+                    break;
+            }
+        }
     }
 }

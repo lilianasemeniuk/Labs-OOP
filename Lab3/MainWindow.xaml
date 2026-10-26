@@ -13,17 +13,26 @@
                 <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
 
-            <MenuItem Header="Objects" Background="#d6d0d0">
-                <MenuItem Header="Point" Background="#d6d0d0" Click="MenuItem_Click"/>
-                <MenuItem Header="Line" Background="#d6d0d0" Click="MenuItem_Click_1"/>
-                <MenuItem Header="Rectangle" Background="#d6d0d0" Click="MenuItem_Click_2"/>
-                <MenuItem Header="Ellipse" Background="#d6d0d0" Click="MenuItem_Click_3"/>
+            <MenuItem Header="Objects" Background="#d6d0d0" SubmenuOpened="ObjectMenu_SubmenuOpened">
+                <MenuItem x:Name="MenuPoint" Header="Point" Background="#d6d0d0" Click="MenuItem_Click"/>
+                <MenuItem x:Name="MenuLine" Header="Line" Background="#d6d0d0" Click="MenuItem_Click_1"/>
+                <MenuItem x:Name="MenuRectangle" Header="Rectangle" Background="#d6d0d0" Click="MenuItem_Click_2"/>
+                <MenuItem x:Name="MenuEllipse" Header="Ellipse" Background="#d6d0d0" Click="MenuItem_Click_3"/>
             </MenuItem>
 
             <MenuItem Header="Help" Background="#d6d0d0" >
                 <MenuItem Header="About" Click="Help_Click"/>
             </MenuItem>
         </Menu>
+
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Background="#e0e0e0">
+                <Button Content="Point" Click="MenuItem_Click" Margin="2"/>
+                <Button Content="Line" Click="MenuItem_Click_1" Margin="2"/>
+                <Button Content="Rectangle" Click="MenuItem_Click_2" Margin="2"/>
+                <Button Content="Ellipse" Click="MenuItem_Click_3" Margin="2"/>     
+            </ToolBar>
+        </ToolBarTray>
 
         <Canvas x:Name="MyCanvas" 
                 Background="Transparent"
