@@ -27,10 +27,18 @@
 
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Background="#e0e0e0">
-                <Button Content="Point" Click="MenuItem_Click" Margin="2"/>
-                <Button Content="Line" Click="MenuItem_Click_1" Margin="2"/>
-                <Button Content="Rectangle" Click="MenuItem_Click_2" Margin="2"/>
-                <Button Content="Ellipse" Click="MenuItem_Click_3" Margin="2"/>     
+                <Button Click="MenuItem_Click" ToolTip="Point">
+                    <Ellipse Width="6" Height="6" Fill="Black"/>
+                </Button>
+                <Button Click="MenuItem_Click_1" ToolTip="Line">
+                    <Path Data="M 2,14 L 14,2" Stroke="Black" StrokeThickness="2" Width="16" Height="16"/>
+                </Button>
+                <Button Click="MenuItem_Click_2" ToolTip="Rectangle">
+                    <Rectangle Width="14" Height="10" Fill="#FFC0CB" Stroke="Black" StrokeThickness="1"/>
+                </Button>
+                <Button Click="MenuItem_Click_3" ToolTip="Ellipse">
+                    <Ellipse Width="14" Height="10" Fill="White" Stroke="Black" StrokeThickness="1"/>
+                </Button>    
             </ToolBar>
         </ToolBarTray>
 
