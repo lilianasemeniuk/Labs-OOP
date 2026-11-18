@@ -9,6 +9,9 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File" Background="#d6d0d0">
+                <MenuItem Header="Save to CSV..." Click="SaveCsvMenu_Click"/>
+                <MenuItem Header="Load from CSV..." Click="LoadCsvMenu_Click"/>
+                <Separator/>
                 <MenuItem Header="Clear" Click="Clear_Click"/>
                 <MenuItem Header="Exit" Click="Exit_Click"/>
             </MenuItem>
@@ -26,7 +29,7 @@
                 <MenuItem Header="About"/>
             </MenuItem>
 
-            <MenuItem Header="Table" Click="ToggleTableMenu_Click"/>
+            <MenuItem Header="Table" Background="#d6d0d0" Click="ToggleTableMenu_Click"/>
 
         </Menu>
 

@@ -2,6 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using System.IO;
+using Microsoft.Win32;
+using System.Linq.Expressions;
 
 namespace Lab5
 {
@@ -32,7 +35,7 @@ namespace Lab5
             return className switch
             {
                 "PointShape" => "Point",
-                "lineShape" => "Line",
+                "LineShape" => "Line",
                 "RectangleShape" => "Rectangle",
                 "EllipseShape" => "Ellipse",
                 "LineWithCirclesShape" => "Line with Circles",
@@ -103,14 +106,12 @@ namespace Lab5
                 tableWindow.AddRow(GetDisplayName(s.GetType().Name), s.x1, s.y1, s.x2, s.y2);
             }
 
-            //Бонус 1. Виділення рядка в таблиці при виборі фігури на полотні
             tableWindow.OnRowSelected += (index) =>
             {
                 selectedShapeIndex = index;
                 RedrawCanvas();
             };
 
-            //Бонус 2. Видалення рядка з таблиці 
             tableWindow.OnRowDeleted += (index) =>
             {
                 if (index >= 0 && index < shapeCount)
@@ -156,5 +157,97 @@ namespace Lab5
         {
             tableWindow?.Close();
         }
+
+        private void SaveCsvMenu_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog
+            {
+                Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*",
+                DefaultExt = "csv",
+                FileName = "shapes.csv"
+            };
+
+            if (saveDialog.ShowDialog() == true)
+            {
+                using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
+                {
+                    writer.WriteLine("Name;x1;y1;x2;y2");
+                    for (int i = 0; i < shapeCount; i++)
+                    {
+                        var s = shapesArray[i];
+                        string name = GetDisplayName(s.GetType().Name);
+                        writer.WriteLine($"{name};{(int)Math.Round(s.x1)};{(int)Math.Round(s.y1)};{(int)Math.Round(s.x2)};{(int)Math.Round(s.y2)}");
+                    }
+                }
+
+                MessageBox.Show("Objects successfully saved to CSV!", "Save CSV", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void LoadCsvMenu_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog
+            {
+                Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*"
+            };
+
+            if (openDialog.ShowDialog() == true)
+            {
+                try
+                {
+                    string[] lines = File.ReadAllLines(openDialog.FileName);
+
+                    for (int i = 0; i < shapeCount; i++)
+                    {
+                        shapesArray[i] = null;
+                    }
+                    shapeCount = 0;
+                    selectedShapeIndex = -1;
+                    tableWindow?.ClearTable();
+
+                    for (int i = 1; i < lines.Length; i++)
+                    {
+                        if (string.IsNullOrWhiteSpace(lines[i])) continue;
+
+                        string[] parts = lines[i].Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length < 5) continue;
+
+                        string name = parts[0].Trim();
+                        double x1 = double.Parse(parts[1].Trim());
+                        double y1 = double.Parse(parts[2].Trim());
+                        double x2 = double.Parse(parts[3].Trim());
+                        double y2 = double.Parse(parts[4].Trim());
+
+                        Shape newShape = CreateShapeByName(name, x1, y1, x2, y2);
+                        if (newShape != null && shapeCount < shapesArray.Length)
+                        {
+                            shapesArray[shapeCount++] = newShape;
+                            tableWindow?.AddRow(name, x1, y1, x2, y2);
+                        }
+                    }
+
+                    RedrawCanvas();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading CSV file: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        private Shape CreateShapeByName(string name, double x1, double y1, double x2, double y2)
+        {
+            return name switch
+            {
+                "Point" or "PointShape" => new PointShape(x1, y1, x2, y2),
+                "Line" or "LineShape" => new LineShape(x1, y1, x2, y2),
+                "Rectangle" or "RectangleShape" => new RectangleShape(x1, y1, x2, y2),
+                "Ellipse" or "EllipseShape" => new EllipseShape(x1, y1, x2, y2),
+                "Line with circles" or "LineWithCirclesShape" => new LineWithCirclesShape(x1, y1, x2, y2),
+                "Cube" or "CubeShape" => new CubeShape(x1, y1, x2, y2),
+                _ => null
+            };
+        }
     }
 }
+    
