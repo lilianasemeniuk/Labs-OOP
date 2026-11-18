@@ -25,6 +25,9 @@
             <MenuItem Header="Help" Background="#d6d0d0" >
                 <MenuItem Header="About"/>
             </MenuItem>
+
+            <MenuItem Header="Table" Click="ToggleTableMenu_Click"/>
+
         </Menu>
 
         <ToolBarTray DockPanel.Dock="Top">
